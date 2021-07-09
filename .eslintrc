@@ -1,3 +1,7 @@
 {
-  "extends": "eslint-config-tiu"
+  "extends": "eslint-config-tiu",
+  "ignorePatterns": ["jest.config.js"],
+  "rules": {
+    "@typescript-eslint/dot-notation": "off"
+  }
 }

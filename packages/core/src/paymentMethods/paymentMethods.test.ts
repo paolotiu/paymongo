@@ -1,36 +1,10 @@
 import MockAdapter from 'axios-mock-adapter';
-import faker from 'faker';
 import { axiosInstance } from '../utils/axiosInstance';
+import { createMockMethods } from './createMockMethods';
 import { createPaymentMethod } from './paymentMethods';
-import { CreatePaymentMethodParams, PaymentMethodResource } from './types';
 
 const mock = new MockAdapter(axiosInstance);
-
-mock.onPost(`/payment_methods`).reply((config) => {
-  const {
-    data: { attributes },
-  } = JSON.parse(config.data) as CreatePaymentMethodParams;
-  return [
-    200,
-    {
-      data: {
-        id: faker.datatype.uuid(),
-        type: 'payment_method',
-        attributes: {
-          livemode: false,
-          details: {
-            exp_month: attributes.details.exp_month,
-            exp_year: attributes.details.exp_year,
-            last4: attributes.details.card_number.slice(-4),
-          },
-          metadata: attributes.metadata,
-          type: 'card',
-          billing: attributes.billng,
-        },
-      },
-    } as PaymentMethodResource,
-  ];
-});
+createMockMethods(mock);
 
 describe('Payment Method Test', () => {
   test('Gets called', async () => {

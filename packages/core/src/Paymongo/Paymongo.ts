@@ -1,5 +1,6 @@
 import btoa from 'btoa-lite';
 import { SecretOrPublicKey } from '../common/types';
+import { createPaymentMethod, retreivePaymentMethod } from '../paymentMethods/paymentMethods';
 import { axiosInstance } from '../utils/axiosInstance';
 
 export class Paymongo {
@@ -9,4 +10,9 @@ export class Paymongo {
     this.key = key;
     axiosInstance.defaults.headers.common['Authorization'] = `Basic ${btoa(key)}`;
   }
+
+  paymentMethods = {
+    create: createPaymentMethod,
+    retrieve: retreivePaymentMethod,
+  };
 }

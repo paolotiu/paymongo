@@ -1,4 +1,4 @@
-type MetadataType = Record<string, any>;
+type MetadataType = Record<string, any> | undefined;
 
 export interface Billing {
   address?: {
@@ -48,4 +48,8 @@ export interface CreatePaymentMethodParams<MetaData = MetadataType> {
       metadata?: MetaData;
     };
   };
+}
+
+export interface RetrievePaymentMethodParams {
+  id: string;
 }

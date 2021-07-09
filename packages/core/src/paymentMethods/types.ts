@@ -1,18 +1,6 @@
-type MetadataType = Record<string, any> | undefined;
+import { Billing } from '../common/types';
 
-export interface Billing {
-  address?: {
-    city?: string;
-    country?: string;
-    line1?: string;
-    line2?: string;
-    postal_code?: string;
-    state?: string;
-  };
-  email?: string;
-  name?: string;
-  phone?: string;
-}
+type MetadataType = Record<string, any> | undefined;
 
 export interface PaymentMethodResource<MetaData = MetadataType> {
   data: {

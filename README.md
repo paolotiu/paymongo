@@ -2,6 +2,8 @@
 
 A fully typed client for the Paymongo API
 
+![Codecov](https://img.shields.io/codecov/c/github/paolotiu/paymongo?style=flat-square)
+
 ## Features
 
 - Fully typed
@@ -10,7 +12,7 @@ A fully typed client for the Paymongo API
 ## Roadmap
 
 - [x] Payment Method
-- [ ] Payment Intent
+- [x] Payment Intent
 - [ ] Sources
 - [ ] Payments
 - [ ] Tokens

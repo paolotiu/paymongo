@@ -1,10 +1,16 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "declaration": true,
+    "outDir": "dist",
+    "declarationDir": "dist/dts",
+    "module": "ESNext",
     "baseUrl": "src",
     "paths": {
+      "@@utils/*": ["utils/*"],
       "@@paymentIntents/*": ["paymentIntents/*"],
       "@@paymentMethods/*": ["paymentMethods/*"],
+      "@@common/*": ["common/*"],
       "@@Paymongo/*": ["Paymongo/*"]
     }
   },

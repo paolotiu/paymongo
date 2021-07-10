@@ -1,6 +1,6 @@
+import { CreatePaymentMethodParams, PaymentMethodResource } from '@@paymentMethods/types';
 import MockAdapter from 'axios-mock-adapter/types';
 import faker from 'faker';
-import { CreatePaymentMethodParams, PaymentMethodResource } from './types';
 
 export const createMockMethods = (mock: MockAdapter) => {
   let resource: PaymentMethodResource;

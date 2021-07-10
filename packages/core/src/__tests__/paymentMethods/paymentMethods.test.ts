@@ -1,7 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
+import { createPaymentMethod, retreivePaymentMethod } from '@@paymentMethods/paymentMethods';
 import { createMockMethods } from './createMockMethods';
-import { createPaymentMethod, retreivePaymentMethod } from './paymentMethods';
 
 const axiosInstance = axios.create();
 

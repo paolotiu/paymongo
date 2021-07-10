@@ -1,7 +1,7 @@
+import { Paymongo } from '@@Paymongo/Paymongo';
 import MockAdapter from 'axios-mock-adapter';
 import btoa from 'btoa-lite';
 import faker from 'faker';
-import { Paymongo } from './Paymongo';
 
 // CONSTANTS
 const key = 'sk_live_6vyisVErtpKCpLK9hkmT3zgn';

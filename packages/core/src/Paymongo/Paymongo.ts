@@ -5,13 +5,12 @@ import { createPaymentMethod, retreivePaymentMethod } from '../paymentMethods/pa
 import { CreatePaymentMethodParams, RetrievePaymentMethodParams } from '../paymentMethods/types';
 import { createAxiosInstance } from '../utils/createAxiosInstance';
 
-export class Paymongo {
-  private readonly key: string;
+  private readonly _key: string;
 
-  readonly axiosInstance: AxiosInstance;
+  private readonly _axiosInstance: AxiosInstance;
 
-  constructor(key: SecretOrPublicKey) {
-    this.key = key;
+  constructor(key: Key) {
+    this._key = key;
 
     const axiosInstance = createAxiosInstance({
       headers: {
@@ -19,12 +18,14 @@ export class Paymongo {
       },
     });
 
-    this.axiosInstance = axiosInstance;
+    this._axiosInstance = axiosInstance;
   }
 
   paymentMethods = {
-    create: (data: CreatePaymentMethodParams) => createPaymentMethod(data, this.axiosInstance),
+    create: <Metadata = undefined>(data: CreatePaymentMethodParams<Metadata>) =>
+      createPaymentMethod(data, this._axiosInstance),
+
     retrieve: (data: RetrievePaymentMethodParams) =>
-      retreivePaymentMethod(data, this.axiosInstance),
+      retreivePaymentMethod(data, this._axiosInstance),
   };
 }

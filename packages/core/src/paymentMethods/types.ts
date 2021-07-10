@@ -1,6 +1,4 @@
-import { Billing } from '../common/types';
-
-type MetadataType = Record<string, any> | undefined;
+import { Billing, MetadataType } from '../common/types';
 
 export interface PaymentMethodResource<MetaData = MetadataType> {
   data: {
@@ -15,7 +13,6 @@ export interface PaymentMethodResource<MetaData = MetadataType> {
         exp_month: number;
         exp_year: number;
       };
-
       metadata: MetaData;
     };
   };

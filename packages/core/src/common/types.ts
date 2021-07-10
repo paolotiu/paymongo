@@ -2,6 +2,7 @@ export type SecretKey = `sk_${string}`;
 export type PublicKey = `pk_${string}`;
 export type SecretOrPublicKey = SecretKey | PublicKey;
 
+export type MetadataType = Record<string, any> | undefined;
 export interface Billing {
   address?: {
     city?: string;

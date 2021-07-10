@@ -8,5 +8,5 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/src' }),
-  modulePathIgnorePatterns: ['createMockMethods.ts', 'index.test-d.ts'],
+  modulePathIgnorePatterns: ['createMockMethods.ts', 'index.test-d.ts', 'fakeParams.ts'],
 };

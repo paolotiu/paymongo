@@ -2,6 +2,12 @@ import { Paymongo } from '@@Paymongo/Paymongo';
 import MockAdapter from 'axios-mock-adapter';
 import btoa from 'btoa-lite';
 import faker from 'faker';
+import {
+  fakeAttachPaymentIntentParams,
+  fakeCreatePaymentIntentParams,
+  fakePaymentMethodParams,
+  fakeRetrievePaymentIntentParams,
+} from './fakeParams';
 
 // CONSTANTS
 const key = 'sk_live_6vyisVErtpKCpLK9hkmT3zgn';
@@ -20,21 +26,6 @@ afterEach(() => {
   // Reset history after each test
   mock.resetHistory();
 });
-
-const fakePaymentMethodParams = {
-  data: {
-    attributes: {
-      type: 'card',
-      details: {
-        card_number: faker.finance.creditCardNumber(),
-        cvc: faker.finance.creditCardCVV(),
-        exp_month: 9,
-        exp_year: 2090,
-      },
-      metadata: { hey: 'there' },
-    },
-  },
-} as const;
 
 describe('Paymongo happy path', () => {
   it('Creates paymongo instance', () => {
@@ -64,6 +55,16 @@ describe('Paymongo happy path', () => {
 
     // Requests are made
     expect(mock.history.post.length).toBe(1);
+    expect(mock.history.get.length).toBe(1);
+  });
+
+  it('Calls paymentIntents correctly', async () => {
+    await paymongo.paymentIntent.create(fakeCreatePaymentIntentParams);
+    await paymongo.paymentIntent.retrieve(fakeRetrievePaymentIntentParams);
+    await paymongo.paymentIntent.attach(fakeAttachPaymentIntentParams);
+
+    // Requests are made
+    expect(mock.history.post.length).toBe(2);
     expect(mock.history.get.length).toBe(1);
   });
 });

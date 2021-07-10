@@ -51,6 +51,16 @@ describe('Payment Intent Test', () => {
     expect(mock.history.get.length).toBe(1);
   });
 
+  it('Still calls retrievePaymentIntent correctly with config', async () => {
+    await retrievePaymentIntent(
+      { id: resource.id, client_key: resource.attributes.client_key },
+      axiosInstance,
+      { headers: { hey: 'there' } }
+    );
+
+    expect(mock.history.get[0].headers.hey).toEqual('there');
+  });
+
   it('Calls attachPaymentIntent', async () => {
     const res = await attachPaymentIntent(
       {

@@ -5,12 +5,12 @@ import {
   RetrievePaymentMethodParams,
 } from './types';
 
-export const createPaymentMethod = async <MetaData = undefined>(
-  data: CreatePaymentMethodParams<MetaData>,
+export const createPaymentMethod = async <Metadata = undefined>(
+  data: CreatePaymentMethodParams<Metadata>,
   axiosInstance: AxiosInstance,
   config?: AxiosRequestConfig
 ) => {
-  const res = await axiosInstance.post<PaymentMethodResource<MetaData>>(
+  const res = await axiosInstance.post<PaymentMethodResource<Metadata>>(
     '/payment_methods',
     data,
     config
@@ -19,12 +19,12 @@ export const createPaymentMethod = async <MetaData = undefined>(
   return res.data.data;
 };
 
-export const retreivePaymentMethod = async <MetaData = Record<string, any> | undefined>(
+export const retreivePaymentMethod = async <Metadata = Record<string, any> | undefined>(
   data: RetrievePaymentMethodParams,
   axiosInstance: AxiosInstance,
   config?: AxiosRequestConfig
 ) => {
-  const res = await axiosInstance.get<PaymentMethodResource<MetaData>>(
+  const res = await axiosInstance.get<PaymentMethodResource<Metadata>>(
     `/payment_methods/${data.id}`,
     config
   );

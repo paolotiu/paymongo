@@ -1,6 +1,6 @@
 import { Billing, MetadataType } from '../common/types';
 
-export interface PaymentMethodResource<MetaData = MetadataType> {
+export interface PaymentMethodResource<Metadata = MetadataType> {
   data: {
     id: string;
     type: 'payment_method';
@@ -13,12 +13,12 @@ export interface PaymentMethodResource<MetaData = MetadataType> {
         exp_month: number;
         exp_year: number;
       };
-      metadata: MetaData;
+      metadata: Metadata;
     };
   };
 }
 
-export interface CreatePaymentMethodParams<MetaData = MetadataType> {
+export interface CreatePaymentMethodParams<Metadata = MetadataType> {
   data: {
     attributes: {
       type: 'card';
@@ -30,7 +30,7 @@ export interface CreatePaymentMethodParams<MetaData = MetadataType> {
       };
       billng?: Billing;
 
-      metadata?: MetaData;
+      metadata?: Metadata;
     };
   };
 }

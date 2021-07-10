@@ -1,5 +1,4 @@
-import { AxiosRequestConfig } from 'axios';
-import { axiosInstance } from '../utils/axiosInstance';
+import { AxiosInstance, AxiosRequestConfig } from 'axios';
 import {
   CreatePaymentMethodParams,
   PaymentMethodResource,
@@ -8,6 +7,7 @@ import {
 
 export const createPaymentMethod = async <MetaData = undefined>(
   data: CreatePaymentMethodParams<MetaData>,
+  axiosInstance: AxiosInstance,
   config?: AxiosRequestConfig
 ) => {
   const res = await axiosInstance.post<PaymentMethodResource<MetaData>>(
@@ -21,6 +21,7 @@ export const createPaymentMethod = async <MetaData = undefined>(
 
 export const retreivePaymentMethod = async <MetaData = Record<string, any> | undefined>(
   data: RetrievePaymentMethodParams,
+  axiosInstance: AxiosInstance,
   config?: AxiosRequestConfig
 ) => {
   const res = await axiosInstance.get<PaymentMethodResource<MetaData>>(

@@ -1,7 +1,9 @@
 import MockAdapter from 'axios-mock-adapter';
-import { axiosInstance } from '../utils/axiosInstance';
+import axios from 'axios';
 import { createMockMethods } from './createMockMethods';
 import { createPaymentMethod, retreivePaymentMethod } from './paymentMethods';
+
+const axiosInstance = axios.create();
 
 const mock = new MockAdapter(axiosInstance);
 createMockMethods(mock);
@@ -9,22 +11,25 @@ createMockMethods(mock);
 describe('Payment Method Test', () => {
   let id: string;
   test('Create Payment method gets called', async () => {
-    const res = await createPaymentMethod({
-      data: {
-        attributes: {
-          type: 'card',
-          details: {
-            card_number: '4343434343434345',
-            cvc: '123',
-            exp_month: 4,
-            exp_year: 2032,
-          },
-          metadata: {
-            hey: 'there',
+    const res = await createPaymentMethod(
+      {
+        data: {
+          attributes: {
+            type: 'card',
+            details: {
+              card_number: '4343434343434345',
+              cvc: '123',
+              exp_month: 4,
+              exp_year: 2032,
+            },
+            metadata: {
+              hey: 'there',
+            },
           },
         },
       },
-    });
+      axiosInstance
+    );
     id = res.id;
 
     expect(mock.history.post.length).toBe(1);
@@ -33,7 +38,7 @@ describe('Payment Method Test', () => {
   });
 
   test('Retrieves payment method', async () => {
-    const res = await retreivePaymentMethod({ id });
+    const res = await retreivePaymentMethod({ id }, axiosInstance);
 
     expect(mock.history.get.length).toBe(1);
     expect(res.id).toEqual(id);

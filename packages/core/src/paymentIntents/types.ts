@@ -56,7 +56,7 @@ export interface PaymentIntentResource<Metadata = MetadataType> {
   };
 }
 
-export interface CreatePatmentIntentParams<Metadata = MetadataType> {
+export interface CreatePaymentIntentParams<Metadata = MetadataType> {
   data: {
     attributes: {
       amount: number;

@@ -75,12 +75,12 @@ export interface BaseRetrievePaymentIntentParams {
   client_key?: string;
 }
 
-export interface RetrievePaymentIntentParamsWithSecret extends BaseRetrievePaymentIntentParams {
+export interface RetrievePaymentIntentParamsUsingPublic extends BaseRetrievePaymentIntentParams {
   client_key: string;
 }
 
-export type RetrievePaymentIntentParams<UsingSecret extends boolean> = UsingSecret extends true
-  ? RetrievePaymentIntentParamsWithSecret
+export type RetrievePaymentIntentParams<UsingPublic extends boolean> = UsingPublic extends true
+  ? RetrievePaymentIntentParamsUsingPublic
   : BaseRetrievePaymentIntentParams;
 
 export interface BaseAttachPaymentIntentParams {
@@ -94,7 +94,7 @@ export interface BaseAttachPaymentIntentParams {
   };
 }
 
-export interface AttachPaymentIntentParamsWithSecret extends BaseAttachPaymentIntentParams {
+export interface AttachPaymentIntentParamsUsingPublic extends BaseAttachPaymentIntentParams {
   data: {
     attributes: {
       payment_method: string;
@@ -104,6 +104,6 @@ export interface AttachPaymentIntentParamsWithSecret extends BaseAttachPaymentIn
   };
 }
 
-export type AttachPaymentIntentParams<UsingSecret extends boolean> = UsingSecret extends true
-  ? AttachPaymentIntentParamsWithSecret
+export type AttachPaymentIntentParams<UsingPublic extends boolean> = UsingPublic extends true
+  ? AttachPaymentIntentParamsUsingPublic
   : BaseAttachPaymentIntentParams;

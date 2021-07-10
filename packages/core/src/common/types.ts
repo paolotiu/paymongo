@@ -1,6 +1,8 @@
 export type SecretKey = `sk_${string}`;
 export type PublicKey = `pk_${string}`;
 export type SecretOrPublicKey = SecretKey | PublicKey;
+export type IsSecretKey<Key extends SecretOrPublicKey> = Key extends SecretKey ? true : false;
+export type IsPublicKey<Key extends SecretOrPublicKey> = Key extends PublicKey ? true : false;
 
 export type MetadataType = Record<string, any> | undefined;
 

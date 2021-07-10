@@ -1,17 +1,24 @@
+import { IsPublicKey, SecretOrPublicKey } from '@@common/types';
 import { AxiosInstance } from 'axios';
 import btoa from 'btoa-lite';
-import { SecretOrPublicKey } from '../common/types';
-import { createPaymentMethod, retreivePaymentMethod } from '../paymentMethods/paymentMethods';
-import { CreatePaymentMethodParams, RetrievePaymentMethodParams } from '../paymentMethods/types';
-import { createAxiosInstance } from '../utils/createAxiosInstance';
+import { createAxiosInstance } from '@@utils/createAxiosInstance';
+import { createPaymentMethod, retreivePaymentMethod } from '@@paymentMethods/paymentMethods';
+import { CreatePaymentMethodParams, RetrievePaymentMethodParams } from '@@paymentMethods/types';
+import {
+  AttachPaymentIntentParams,
+  CreatePaymentIntentParams,
+  RetrievePaymentIntentParams,
+} from '@@paymentIntents/types';
+import {
+  createPaymentIntent,
+  retrievePaymentIntent,
+  attachPaymentIntent,
+} from '@@paymentIntents/paymentIntents';
 
-  private readonly _key: string;
-
+export class Paymongo<Key extends SecretOrPublicKey> {
   private readonly _axiosInstance: AxiosInstance;
 
   constructor(key: Key) {
-    this._key = key;
-
     const axiosInstance = createAxiosInstance({
       headers: {
         Authorization: `Basic ${btoa(key)}`,
@@ -27,5 +34,16 @@ import { createAxiosInstance } from '../utils/createAxiosInstance';
 
     retrieve: (data: RetrievePaymentMethodParams) =>
       retreivePaymentMethod(data, this._axiosInstance),
+  };
+
+  paymentIntent = {
+    create: <Metadata = undefined>(data: CreatePaymentIntentParams<Metadata>) =>
+      createPaymentIntent(data, this._axiosInstance),
+
+    retrieve: <Metadata = undefined>(data: RetrievePaymentIntentParams<IsPublicKey<Key>>) =>
+      retrievePaymentIntent<Metadata, IsPublicKey<Key>>(data, this._axiosInstance),
+
+    attach: <Metadata = undefined>(data: AttachPaymentIntentParams<IsPublicKey<Key>>) =>
+      attachPaymentIntent<Metadata, IsPublicKey<Key>>(data, this._axiosInstance),
   };
 }

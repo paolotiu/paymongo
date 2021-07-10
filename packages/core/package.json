@@ -1,30 +1,53 @@
 {
   "name": "@paymongo/core",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/paymongo.es5.js",
+  "typings": "dist/dts/paymongo.d.ts",
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/paolotiu/paymongo.git"
+  },
   "scripts": {
+    "build": "rollup -c",
     "test": "jest",
     "test:cov": "jest --coverage --collectCoverageFrom=src/**/*.ts",
     "tsd": "tsd"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
     "@types/btoa-lite": "^1.0.0",
     "@types/faker": "^5.5.7",
     "@types/jest": "^26.0.24",
+    "@zerollup/ts-transform-paths": "^1.7.18",
     "axios-mock-adapter": "^1.19.0",
     "faker": "^5.5.3",
     "jest": "^27.0.6",
+    "rollup": "^2.53.0",
+    "rollup-plugin-dts": "^3.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^27.0.3",
-    "typescript": "^4.3.5"
+    "tslib": "^2.3.0",
+    "ttypescript": "^1.5.12",
+    "typescript": "^4.3.5",
+    "typescript-transform-paths": "^3.0.2"
   },
   "dependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.0",
     "axios": "^0.21.1",
     "btoa-lite": "^1.0.0",
+    "remove": "^0.1.5",
     "resolve-types": "^0.2.0",
-    "tsd": "^0.17.0"
+    "tsd": "^0.17.0",
+    "typescript-transform-paths": "^3.0.2"
   },
-  "types": "index.d.ts",
+  "types": "./dist/index.d.ts",
   "tsd": {
     "directory": "src/__tests__/types"
   }

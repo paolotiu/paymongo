@@ -1,4 +1,12 @@
 {
   "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@@paymentIntents/*": ["paymentIntents/*"],
+      "@@paymentMethods/*": ["paymentMethods/*"],
+      "@@Paymongo/*": ["Paymongo/*"]
+    }
+  },
   "include": ["src"]
 }

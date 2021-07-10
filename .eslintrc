@@ -1,6 +1,6 @@
 {
   "extends": "eslint-config-tiu",
-  "ignorePatterns": ["jest.config.js", "*.d.ts"],
+  "ignorePatterns": ["*.config.js", "*.d.ts", "dist"],
   "rules": {
     "@typescript-eslint/dot-notation": "off"
   }

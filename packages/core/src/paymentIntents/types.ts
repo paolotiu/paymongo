@@ -1,5 +1,5 @@
+import { Payment } from '@@payments/types';
 import { Currency, MetadataType, PossibleErrorSubCodes } from '../common/types';
-import { Payment } from '../payments/types';
 
 export type PaymentIntentStatus =
   | 'awaiting_payment_method'

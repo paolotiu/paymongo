@@ -38,6 +38,7 @@
     "rollup": "^2.53.0",
     "rollup-plugin-dts": "^3.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
+    "tsd": "^0.17.0",
     "ts-jest": "^27.0.3",
     "tslib": "^2.3.0",
     "ttypescript": "^1.5.12",
@@ -45,13 +46,8 @@
     "typescript-transform-paths": "^3.0.2"
   },
   "dependencies": {
-    "@rollup/plugin-node-resolve": "^13.0.0",
     "axios": "^0.21.1",
-    "btoa-lite": "^1.0.0",
-    "remove": "^0.1.5",
-    "resolve-types": "^0.2.0",
-    "tsd": "^0.17.0",
-    "typescript-transform-paths": "^3.0.2"
+    "btoa-lite": "^1.0.0"
   },
   "types": "./dist/index.d.ts",
   "tsd": {

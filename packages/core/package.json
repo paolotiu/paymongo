@@ -1,11 +1,18 @@
 {
   "name": "@paymongo/core",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "module": "dist/paymongo.es5.js",
   "typings": "dist/dts/paymongo.d.ts",
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "paymongo",
+    "typescript",
+    "node",
+    "payments",
+    "philippines"
   ],
   "license": "MIT",
   "repository": {

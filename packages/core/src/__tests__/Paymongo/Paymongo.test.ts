@@ -5,8 +5,10 @@ import faker from 'faker';
 import {
   fakeAttachPaymentIntentParams,
   fakeCreatePaymentIntentParams,
+  fakeCreateSourceParams,
   fakePaymentMethodParams,
   fakeRetrievePaymentIntentParams,
+  fakeRetrieveSourceParams,
 } from './fakeParams';
 
 // CONSTANTS
@@ -67,6 +69,15 @@ describe('Paymongo happy path', () => {
     expect(mock.history.post.length).toBe(2);
     expect(mock.history.get.length).toBe(1);
   });
+
+  it('Calls sources correctly', async () => {
+    await paymongo.sources.create(fakeCreateSourceParams)
+    await paymongo.sources.retrieve(fakeRetrieveSourceParams);
+
+    // Requests are made
+    expect(mock.history.post.length).toBe(1);
+    expect(mock.history.get.length).toBe(1);
+  })
 });
 
 describe('Multiple instance handling', () => {

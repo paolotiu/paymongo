@@ -3,6 +3,7 @@ import {
   CreatePaymentIntentParams,
   RetrievePaymentIntentParams,
 } from '@@/paymentIntents/types';
+import { CreateSourceParams, RetrieveSourceParams } from '@@/sources/types';
 import faker from 'faker';
 
 export const fakePaymentMethodParams = {
@@ -43,4 +44,22 @@ export const fakeAttachPaymentIntentParams: AttachPaymentIntentParams<true> = {
     },
   },
   id: 'sadjkasd',
+};
+
+export const fakeCreateSourceParams: CreateSourceParams = {
+  data: {
+    attributes: {
+      amount: 12312,
+      currency: 'PHP',
+      redirect: {
+        failed: 'http://localhost:3000',
+        success: 'http://localhost:3000',
+      },
+      type: 'gcash',
+    },
+  },
+};
+
+export const fakeRetrieveSourceParams: RetrieveSourceParams = {
+  id: 'asdjkasjdkasjd',
 };

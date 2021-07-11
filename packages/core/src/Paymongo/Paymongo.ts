@@ -14,6 +14,8 @@ import {
   retrievePaymentIntent,
   attachPaymentIntent,
 } from '@@paymentIntents/paymentIntents';
+import { CreateSourceParams, RetrieveSourceParams } from '@@/sources/types';
+import { createSource, retrieveSource } from '@@/sources/sources';
 
 export class Paymongo<Key extends SecretOrPublicKey> {
   private readonly _axiosInstance: AxiosInstance;
@@ -45,5 +47,10 @@ export class Paymongo<Key extends SecretOrPublicKey> {
 
     attach: <Metadata = undefined>(data: AttachPaymentIntentParams<IsPublicKey<Key>>) =>
       attachPaymentIntent<Metadata, IsPublicKey<Key>>(data, this._axiosInstance),
+  };
+
+  sources = {
+    create: (data: CreateSourceParams) => createSource(data, this._axiosInstance),
+    retrieve: (data: RetrieveSourceParams) => retrieveSource(data, this._axiosInstance),
   };
 }

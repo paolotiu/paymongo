@@ -1,6 +1,6 @@
 {
   "name": "@paymongo/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/index.js",
   "module": "dist/paymongo.es5.js",
   "typings": "dist/dts/paymongo.d.ts",
@@ -38,8 +38,8 @@
     "rollup": "^2.53.0",
     "rollup-plugin-dts": "^3.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
-    "tsd": "^0.17.0",
     "ts-jest": "^27.0.3",
+    "tsd": "^0.17.0",
     "tslib": "^2.3.0",
     "ttypescript": "^1.5.12",
     "typescript": "^4.3.5",

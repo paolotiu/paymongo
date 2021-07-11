@@ -1,6 +1,6 @@
+import { isomorphicBtoA } from '@@utils/isomorphicBtoA';
 import { Paymongo } from '@@Paymongo/Paymongo';
 import MockAdapter from 'axios-mock-adapter';
-import btoa from 'btoa-lite';
 import faker from 'faker';
 import {
   fakeAttachPaymentIntentParams,
@@ -13,7 +13,7 @@ import {
 
 // CONSTANTS
 const key = 'sk_live_6vyisVErtpKCpLK9hkmT3zgn';
-const encodedKey = btoa(key);
+const encodedKey = isomorphicBtoA(key);
 const AuthHeader = `Basic ${encodedKey}`;
 
 // Paymongo instance
@@ -45,9 +45,9 @@ describe('Paymongo happy path', () => {
   /** ******************************** */
 
   it('Calls paymentMethods correctly', async () => {
-    await paymongo.paymentMethods.create(fakePaymentMethodParams);
+    await paymongo.paymentMethod.create(fakePaymentMethodParams);
 
-    await paymongo.paymentMethods.retrieve({
+    await paymongo.paymentMethod.retrieve({
       id: faker.datatype.uuid(),
     });
 
@@ -71,25 +71,25 @@ describe('Paymongo happy path', () => {
   });
 
   it('Calls sources correctly', async () => {
-    await paymongo.sources.create(fakeCreateSourceParams)
+    await paymongo.sources.create(fakeCreateSourceParams);
     await paymongo.sources.retrieve(fakeRetrieveSourceParams);
 
     // Requests are made
     expect(mock.history.post.length).toBe(1);
     expect(mock.history.get.length).toBe(1);
-  })
+  });
 });
 
 describe('Multiple instance handling', () => {
   it('Creates new axios instance for 2nd paymongo instance', () => {
     const key2 = 'sk_live_dasidjaskdjaskd';
-    const encodedKey2 = btoa(key2);
+    const encodedKey2 = isomorphicBtoA(key2);
     const paymongo2 = new Paymongo(key2);
 
     const mock2 = new MockAdapter((paymongo2 as any)._axiosInstance);
     mock2.onAny().reply(200, { data: 'cool' });
 
-    paymongo2.paymentMethods.create(fakePaymentMethodParams);
+    paymongo2.paymentMethod.create(fakePaymentMethodParams);
 
     // Defaults are correct
     expect((paymongo as any)._axiosInstance.defaults.headers.common['Authorization']).toEqual(

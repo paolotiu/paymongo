@@ -1,34 +1,48 @@
 import { IsPublicKey, SecretOrPublicKey } from '@@common/types';
 import { AxiosInstance } from 'axios';
-import btoa from 'btoa-lite';
 import { createAxiosInstance } from '@@utils/createAxiosInstance';
 import { createPaymentMethod, retreivePaymentMethod } from '@@paymentMethods/paymentMethods';
 import { CreatePaymentMethodParams, RetrievePaymentMethodParams } from '@@paymentMethods/types';
+import {
+  // createPaymentIntent,
+  retrievePaymentIntent,
+  attachPaymentIntent,
+  createPaymentIntent,
+} from '@@paymentIntents/paymentIntents';
+import { isomorphicBtoA } from '@@utils/isomorphicBtoA';
+import { createSource, retrieveSource } from 'sources/sources';
+import { CreateSourceParams, RetrieveSourceParams } from 'sources/types';
 import {
   AttachPaymentIntentParams,
   CreatePaymentIntentParams,
   RetrievePaymentIntentParams,
 } from '@@paymentIntents/types';
-import {
-  createPaymentIntent,
-  retrievePaymentIntent,
-  attachPaymentIntent,
-} from '@@paymentIntents/paymentIntents';
-import { CreateSourceParams, RetrieveSourceParams } from '@@/sources/types';
-import { createSource, retrieveSource } from '@@/sources/sources';
 
 export class Paymongo<Key extends SecretOrPublicKey> {
-  private readonly _axiosInstance: AxiosInstance;
+  private _axiosInstance: AxiosInstance;
 
   constructor(key: Key) {
     const axiosInstance = createAxiosInstance({
       headers: {
-        Authorization: `Basic ${btoa(key)}`,
+        Authorization: `Basic ${isomorphicBtoA(key)}`,
       },
     });
-
+    if (typeof window !== 'undefined' && key.includes('sk')) {
+      throw new Error('Do not use the secret key in the browser');
+    }
     this._axiosInstance = axiosInstance;
   }
+  // {
+  //     url,
+  //     config,
+  //     data,
+  //     method,
+  //   }: {
+  //     url: string;
+  //     data?: Record<string, any>;
+  //     config?: AxiosRequestConfig;
+  //     method: string;
+  //   }
 
   paymentMethod = {
     create: <Metadata = undefined>(data: CreatePaymentMethodParams<Metadata>) =>
@@ -41,6 +55,7 @@ export class Paymongo<Key extends SecretOrPublicKey> {
   paymentIntent = {
     create: <Metadata = undefined>(data: CreatePaymentIntentParams<Metadata>) =>
       createPaymentIntent(data, this._axiosInstance),
+    // createPaymentIntent(data, this._axiosInstance),
 
     retrieve: <Metadata = undefined>(data: RetrievePaymentIntentParams<IsPublicKey<Key>>) =>
       retrievePaymentIntent<Metadata, IsPublicKey<Key>>(data, this._axiosInstance),

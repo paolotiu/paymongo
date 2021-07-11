@@ -22,8 +22,8 @@ const config = [
       },
       { file: pkg.module, format: 'es', sourcemap: true },
     ],
-    external: ['axios'],
     plugins: [
+      commonjs(),
       json(),
       typescript({
         typescript: ttypescript,

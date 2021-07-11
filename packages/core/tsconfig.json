@@ -6,15 +6,15 @@
     "lib": ["DOM"],
     "declarationDir": "dist/dts",
     "module": "ESNext",
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@@utils/*": ["utils/*"],
-      "@@paymentIntents/*": ["paymentIntents/*"],
-      "@@paymentMethods/*": ["paymentMethods/*"],
-      "@@payments/*": ["payments/*"],
-      "@@common/*": ["common/*"],
-      "@@Paymongo/*": ["Paymongo/*"],
-      "@@sources/*": ["sources/*"]
+      "@@payments/*": ["src/payments/*"],
+      "@@utils/*": ["src/utils/*"],
+      "@@paymentIntents/*": ["src/paymentIntents/*"],
+      "@@paymentMethods/*": ["src/paymentMethods/*"],
+      "@@common/*": ["src/common/*"],
+      "@@Paymongo/*": ["src/Paymongo/*"],
+      "@@sources/*": ["src/sources/*"]
     }
   },
   "include": ["src"]

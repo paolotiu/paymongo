@@ -27,6 +27,8 @@ mock.onAny().reply(200, { data: 'nice' });
 afterEach(() => {
   // Reset history after each test
   mock.resetHistory();
+  // Reset node env
+  process.env.NODE_ENV = 'test';
 });
 
 describe('Paymongo happy path', () => {
@@ -38,6 +40,13 @@ describe('Paymongo happy path', () => {
     expect((paymongo as any)._axiosInstance.defaults.headers.common['Authorization']).toEqual(
       AuthHeader
     );
+  });
+
+  it('Gets http adapter in node environment', () => {
+    process.env.NODE_ENV = 'dev';
+    const res = (paymongo as any).getConfig();
+    // eslint-disable-next-line global-require
+    expect(res).toEqual({ adapter: require('axios/lib/adapters/http') });
   });
 
   /** ******************************** */

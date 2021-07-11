@@ -2,8 +2,8 @@ import {
   AttachPaymentIntentParams,
   CreatePaymentIntentParams,
   RetrievePaymentIntentParams,
-} from '@@/paymentIntents/types';
-import { CreateSourceParams, RetrieveSourceParams } from '@@/sources/types';
+} from '@@paymentIntents/types';
+import { CreateSourceParams, RetrieveSourceParams } from '@@sources/types';
 import faker from 'faker';
 
 export const fakePaymentMethodParams = {

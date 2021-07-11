@@ -1,4 +1,4 @@
-import { CreateSourceParams, SourceResource } from '@@/sources/types';
+import { CreateSourceParams, SourceResource } from '@@sources/types';
 import MockAdapter from 'axios-mock-adapter/types';
 import faker from 'faker';
 

@@ -21,8 +21,8 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "test": "jest",
-    "test:cov": "jest --coverage --collectCoverageFrom=src/**/*.ts",
+    "test": "NODE_ENV=test jest",
+    "test:cov": "yarn test --coverage --collectCoverageFrom=src/**/*.ts",
     "tsd": "tsd"
   },
   "devDependencies": {

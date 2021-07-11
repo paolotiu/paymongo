@@ -13,7 +13,8 @@
       "@@paymentMethods/*": ["paymentMethods/*"],
       "@@payments/*": ["payments/*"],
       "@@common/*": ["common/*"],
-      "@@Paymongo/*": ["Paymongo/*"]
+      "@@Paymongo/*": ["Paymongo/*"],
+      "@@sources/*": ["sources/*"]
     }
   },
   "include": ["src"]

@@ -1,4 +1,4 @@
-import { Paymongo } from '@@/index';
+import  Paymongo  from '../index';
 
 it('Exports Paymongo class', () => {
   const paymongo = new Paymongo('sk_sdklaskdlsaasdjksad');

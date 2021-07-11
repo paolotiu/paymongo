@@ -30,7 +30,7 @@ export class Paymongo<Key extends SecretOrPublicKey> {
     this._axiosInstance = axiosInstance;
   }
 
-  paymentMethods = {
+  paymentMethod = {
     create: <Metadata = undefined>(data: CreatePaymentMethodParams<Metadata>) =>
       createPaymentMethod(data, this._axiosInstance),
 

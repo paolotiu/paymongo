@@ -1,9 +1,9 @@
 {
   "name": "@paymongo/core",
   "version": "0.1.1",
-  "main": "dist/index.js",
+  "main": "dist/paymongo.umd.js",
   "module": "dist/paymongo.es5.js",
-  "typings": "dist/dts/paymongo.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@types/btoa-lite": "^1.0.0",
     "@types/faker": "^5.5.7",
@@ -46,10 +47,11 @@
     "typescript-transform-paths": "^3.0.2"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "btoa-lite": "^1.0.0"
+    "axios": "^0.21.1"
   },
-  "types": "./dist/index.d.ts",
+  "peerDependencies": {
+    "axios": "^0.21.1"
+  },
   "tsd": {
     "directory": "src/__tests__/types"
   }

@@ -1,6 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import ttypescript from 'ttypescript';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import dts from 'rollup-plugin-dts';
@@ -21,6 +22,7 @@ const config = [
       },
       { file: pkg.module, format: 'es', sourcemap: true },
     ],
+    external: ['axios'],
     plugins: [
       json(),
       typescript({
@@ -31,15 +33,13 @@ const config = [
 
       // Allow node_modules resolution, so you can use 'external' to control
       // which external modules to include in the bundle
-      nodeResolve({ browser: true }),
-
-      commonjs(),
+      nodeResolve({ browser: true, preferBuiltins: true }),
     ],
   },
   {
     input: 'dist/dts/index.d.ts',
     output: [{ file: pkg.types, format: 'es' }],
-    plugins: [dts()],
+    plugins: [dts({})],
   },
 ];
 

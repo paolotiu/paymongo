@@ -3,14 +3,15 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "dist",
+    "lib": ["DOM"],
     "declarationDir": "dist/dts",
     "module": "ESNext",
     "baseUrl": "src",
     "paths": {
-      "@@/*": ["./*"],
       "@@utils/*": ["utils/*"],
       "@@paymentIntents/*": ["paymentIntents/*"],
       "@@paymentMethods/*": ["paymentMethods/*"],
+      "@@payments/*": ["payments/*"],
       "@@common/*": ["common/*"],
       "@@Paymongo/*": ["Paymongo/*"]
     }

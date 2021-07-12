@@ -11,7 +11,7 @@ export const createPaymentIntent = async <Metadata = undefined>(
   axiosInstance: AxiosInstance,
   config?: AxiosRequestConfig
 ) => {
-  const res = await axiosInstance.post<PaymentIntentResource<Metadata>>(
+  const res = await axiosInstance.post<{ data: PaymentIntentResource<Metadata> }>(
     '/payment_intents',
     data,
     config
@@ -30,10 +30,13 @@ export const retrievePaymentIntent = async <
 ) => {
   const { id, client_key } = data;
 
-  const res = await axiosInstance.get<PaymentIntentResource<Metadata>>(`/payment_intents/${id}`, {
-    params: { client_key, ...config?.params },
-    ...config,
-  });
+  const res = await axiosInstance.get<{ data: PaymentIntentResource<Metadata> }>(
+    `/payment_intents/${id}`,
+    {
+      params: { client_key, ...config?.params },
+      ...config,
+    }
+  );
 
   return res.data.data;
 };
@@ -44,7 +47,7 @@ export const attachPaymentIntent = async <Metadata = undefined, UsingPublic exte
   config?: AxiosRequestConfig
 ) => {
   const { id, ...params } = data;
-  const res = await axiosInstance.post<PaymentIntentResource<Metadata>>(
+  const res = await axiosInstance.post<{ data: PaymentIntentResource<Metadata> }>(
     `/payment_intents/${id}/attach`,
     params,
     config

@@ -1,20 +1,18 @@
 import { Billing, MetadataType } from '../common/types';
 
 export interface PaymentMethodResource<Metadata = MetadataType> {
-  data: {
-    id: string;
-    type: 'payment_method';
-    attributes: {
-      livemode: boolean;
-      type: 'card';
-      billing?: Billing;
-      details: {
-        last4: string;
-        exp_month: number;
-        exp_year: number;
-      };
-      metadata: Metadata;
+  id: string;
+  type: 'payment_method';
+  attributes: {
+    livemode: boolean;
+    type: 'card';
+    billing?: Billing;
+    details: {
+      last4: string;
+      exp_month: number;
+      exp_year: number;
     };
+    metadata: Metadata;
   };
 }
 

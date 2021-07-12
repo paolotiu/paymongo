@@ -14,24 +14,22 @@ export const createMockMethods = (mock: MockAdapter) => {
     const id = faker.datatype.uuid();
 
     resources[id] = {
-      data: {
-        id,
-        type: 'source',
-        attributes: {
-          amount,
-          currency,
-          livemode: false,
-          redirect: { checkout_url: faker.internet.url(), ...redirect },
-          status: 'pending',
-          type,
-          billing,
-          created_at: new Date().getTime(),
-          updated_at: new Date().getTime(),
-        },
+      id,
+      type: 'source',
+      attributes: {
+        amount,
+        currency,
+        livemode: false,
+        redirect: { checkout_url: faker.internet.url(), ...redirect },
+        status: 'pending',
+        type,
+        billing,
+        created_at: new Date().getTime(),
+        updated_at: new Date().getTime(),
       },
     };
 
-    return [200, resources[id]];
+    return [200, { data: resources[id] }];
   });
 
   mock.onGet(/sources\/.+/).reply((config) => {
@@ -45,6 +43,6 @@ export const createMockMethods = (mock: MockAdapter) => {
       return [404];
     }
 
-    return [200, resource];
+    return [200, { data: resource }];
   });
 };

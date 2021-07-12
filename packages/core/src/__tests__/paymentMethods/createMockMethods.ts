@@ -10,29 +10,27 @@ export const createMockMethods = (mock: MockAdapter) => {
     } = JSON.parse(config.data) as CreatePaymentMethodParams;
 
     resource = {
-      data: {
-        id: faker.datatype.uuid(),
-        type: 'payment_method',
-        attributes: {
-          livemode: false,
-          details: {
-            exp_month: attributes.details.exp_month,
-            exp_year: attributes.details.exp_year,
-            last4: attributes.details.card_number.slice(-4),
-          },
-          metadata: attributes.metadata,
-          type: 'card',
-          billing: attributes.billng,
+      id: faker.datatype.uuid(),
+      type: 'payment_method',
+      attributes: {
+        livemode: false,
+        details: {
+          exp_month: attributes.details.exp_month,
+          exp_year: attributes.details.exp_year,
+          last4: attributes.details.card_number.slice(-4),
         },
+        metadata: attributes.metadata,
+        type: 'card',
+        billing: attributes.billng,
       },
     };
 
-    return [200, resource];
+    return [200, { data: resource }];
   });
 
   mock.onGet(/payment_methods\/.+/).reply(() => {
     if (resource) {
-      return [200, resource];
+      return [200, { data: resource }];
     }
     return [404];
   });

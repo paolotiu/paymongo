@@ -10,7 +10,7 @@ export const createPaymentMethod = async <Metadata = undefined>(
   axiosInstance: AxiosInstance,
   config?: AxiosRequestConfig
 ) => {
-  const res = await axiosInstance.post<PaymentMethodResource<Metadata>>(
+  const res = await axiosInstance.post<{ data: PaymentMethodResource<Metadata> }>(
     '/payment_methods',
     data,
     config
@@ -24,7 +24,7 @@ export const retreivePaymentMethod = async <Metadata = Record<string, any> | und
   axiosInstance: AxiosInstance,
   config?: AxiosRequestConfig
 ) => {
-  const res = await axiosInstance.get<PaymentMethodResource<Metadata>>(
+  const res = await axiosInstance.get<{ data: PaymentMethodResource<Metadata> }>(
     `/payment_methods/${data.id}`,
     config
   );

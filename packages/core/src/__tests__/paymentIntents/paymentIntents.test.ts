@@ -18,7 +18,7 @@ afterEach(() => {
 });
 
 describe('Payment Intent Test', () => {
-  let resource: PaymentIntentResource['data'];
+  let resource: PaymentIntentResource;
   it('Calls createPaymentIntent', async () => {
     const res = await createPaymentIntent(
       {

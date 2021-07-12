@@ -9,20 +9,18 @@ export interface SourceRedirect {
   failed: string;
 }
 export interface SourceResource {
-  data: {
-    id: string;
-    type: 'source';
-    attributes: {
-      amount: number;
-      billing?: Billing;
-      currency: Currency;
-      livemode: boolean;
-      redirect: SourceRedirect;
-      status: SourceStatus;
-      type: SourceType;
-      created_at: number;
-      updated_at: number;
-    };
+  id: string;
+  type: 'source';
+  attributes: {
+    amount: number;
+    billing?: Billing;
+    currency: Currency;
+    livemode: boolean;
+    redirect: SourceRedirect;
+    status: SourceStatus;
+    type: SourceType;
+    created_at: number;
+    updated_at: number;
   };
 }
 

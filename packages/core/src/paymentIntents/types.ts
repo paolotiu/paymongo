@@ -28,31 +28,29 @@ export interface PaymentMethodOptions {
   };
 }
 export interface PaymentIntentResource<Metadata = MetadataType> {
-  data: {
-    id: string;
-    type: 'payment_intent';
-    attributes: {
-      amount: number;
-      currency: Currency;
-      description?: string;
+  id: string;
+  type: 'payment_intent';
+  attributes: {
+    amount: number;
+    currency: Currency;
+    description?: string;
 
-      statement_descriptor: string;
-      status: PaymentIntentStatus;
-      livemode: boolean;
+    statement_descriptor: string;
+    status: PaymentIntentStatus;
+    livemode: boolean;
 
-      client_key: string;
+    client_key: string;
 
-      last_payment_error?: LastPaymentError;
+    last_payment_error?: LastPaymentError;
 
-      next_action?: NextAction;
+    next_action?: NextAction;
 
-      payment_method_allowed: ['card'];
-      payments: PaymentResource['data'][];
+    payment_method_allowed: ['card'];
+    payments: PaymentResource['data'][];
 
-      payment_method_options: PaymentMethodOptions;
+    payment_method_options: PaymentMethodOptions;
 
-      metadata: Metadata;
-    };
+    metadata: Metadata;
   };
 }
 

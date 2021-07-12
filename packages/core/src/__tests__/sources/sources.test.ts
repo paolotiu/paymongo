@@ -10,7 +10,7 @@ const mock = new MockAdapter(axiosInstance);
 createMockMethods(mock);
 
 describe('Sources test', () => {
-  let resource: SourceResource['data'];
+  let resource: SourceResource;
   it('Creates a source', async () => {
     const res = await createSource(
       {

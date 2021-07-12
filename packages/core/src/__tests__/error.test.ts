@@ -25,6 +25,9 @@ test('handle error', async () => {
     },
     axiosInstance
   ).catch((e: PaymongoRequestError) => {
+    // Jest throws a type error here in runtime, I don't know why.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     expect(e.response?.data).toMatchShapeOf(ErrorOnlyCodeAndDetail);
   });
 });

@@ -1,5 +1,5 @@
 import { SourceType } from '@@sources/types';
-import { Billing, Currency, PossibleErrorSubCodes } from '../common/types';
+import { Billing, Currency, ErrorSubCode } from '../common/types';
 
 export type PaymentStatus = 'pending' | 'paid' | 'fail';
 
@@ -27,7 +27,7 @@ export interface PaymentResource {
     external_reference_number?: string;
 
     // On Fail
-    failed_code?: PossibleErrorSubCodes;
+    failed_code?: ErrorSubCode;
     failed_message?: string;
 
     fee: number;

@@ -1,5 +1,5 @@
 import { PaymentResource } from '@@payments/types';
-import { Currency, MetadataType, PossibleErrorSubCodes } from '../common/types';
+import { Currency, MetadataType, ErrorSubCode } from '../common/types';
 
 export type PaymentIntentStatus =
   | 'awaiting_payment_method'
@@ -9,7 +9,7 @@ export type PaymentIntentStatus =
 
 export interface LastPaymentError {
   payment: string;
-  failed_code: PossibleErrorSubCodes;
+  failed_code: ErrorSubCode;
   failed_message: string;
   payment_method: string;
 }

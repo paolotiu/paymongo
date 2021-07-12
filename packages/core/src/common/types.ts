@@ -9,7 +9,7 @@ export type IsPublicKey<Key extends SecretOrPublicKey> = Key extends PublicKey ?
 export type MetadataType = Record<string, any> | undefined;
 
 export type Currency = 'PHP';
-export type PossibleErrorSubCodes =
+export type ErrorSubCode =
   | 'card_expired'
   | 'cvc_invalid'
   | 'generic_decline'
@@ -28,7 +28,7 @@ export interface ErrorShape {
     pointer: string;
     attribute: string;
   };
-  sub_code?: PossibleErrorSubCodes;
+  sub_code?: ErrorSubCode;
 }
 
 export interface PaymongoError {

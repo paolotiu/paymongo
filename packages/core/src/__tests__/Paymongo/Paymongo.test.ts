@@ -44,7 +44,7 @@ describe('Paymongo happy path', () => {
 
   it('Gets http adapter in node environment', () => {
     process.env.NODE_ENV = 'dev';
-    const res = (paymongo as any).getConfig();
+    const res = (paymongo as any)._getConfig();
     // eslint-disable-next-line global-require
     expect(res).toEqual({ adapter: require('axios/lib/adapters/http') });
   });

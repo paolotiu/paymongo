@@ -13,7 +13,7 @@ describe('Paymongo browser env', () => {
     process.env.NODE_ENV = 'dev';
     const paymongo = new Paymongo('pk_sdkasadj');
 
-    const config = (paymongo as any).getConfig();
+    const config = (paymongo as any)._getConfig();
 
     // eslint-disable-next-line global-require
     expect(config).toEqual({ adapter: require('axios/lib/adapters/xhr') });

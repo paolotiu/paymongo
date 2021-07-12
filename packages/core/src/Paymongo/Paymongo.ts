@@ -4,7 +4,6 @@ import { createAxiosInstance } from '@@utils/createAxiosInstance';
 import { createPaymentMethod, retreivePaymentMethod } from '@@paymentMethods/paymentMethods';
 import { CreatePaymentMethodParams, RetrievePaymentMethodParams } from '@@paymentMethods/types';
 import {
-  // createPaymentIntent,
   retrievePaymentIntent,
   attachPaymentIntent,
   createPaymentIntent,
@@ -17,9 +16,17 @@ import {
   CreatePaymentIntentParams,
   RetrievePaymentIntentParams,
 } from '@@paymentIntents/types';
+import {
+  CreatePaymentParams,
+  ListAllPaymentsParams,
+  RetrievePaymentParams,
+} from '@@payments/types';
+import { createPayment, listAllPayments, retrievePayment } from '@@payments/payments';
 
 export class Paymongo<Key extends SecretOrPublicKey> {
   private _axiosInstance: AxiosInstance;
+
+  private _isSecret: boolean;
 
   constructor(key: Key) {
     const axiosInstance = createAxiosInstance({
@@ -28,7 +35,9 @@ export class Paymongo<Key extends SecretOrPublicKey> {
       },
     });
 
-    if (typeof window !== 'undefined' && key.includes('sk')) {
+    this._isSecret = key.includes('sk');
+
+    if (typeof window !== 'undefined' && this._isSecret) {
       throw new Error('Do not use the secret key in the browser');
     }
 
@@ -37,7 +46,7 @@ export class Paymongo<Key extends SecretOrPublicKey> {
 
   // Workaround for axios not detecting evironment
   // https://github.com/axios/axios/issues/1180#issuecomment-373268257
-  private getConfig() {
+  private _getConfig() {
     if (process.env.NODE_ENV === 'test') return {};
 
     let adapter;
@@ -56,30 +65,44 @@ export class Paymongo<Key extends SecretOrPublicKey> {
 
   paymentMethod = {
     create: <Metadata = undefined>(data: CreatePaymentMethodParams<Metadata>) =>
-      createPaymentMethod(data, this._axiosInstance, this.getConfig()),
+      createPaymentMethod(data, this._axiosInstance, this._getConfig()),
 
     retrieve: (data: RetrievePaymentMethodParams) =>
-      retreivePaymentMethod(data, this._axiosInstance, this.getConfig()),
+      retreivePaymentMethod(data, this._axiosInstance, this._getConfig()),
   };
 
   paymentIntent = {
     create: <Metadata = undefined>(data: CreatePaymentIntentParams<Metadata>) =>
-      createPaymentIntent(data, this._axiosInstance, this.getConfig()),
+      createPaymentIntent(data, this._axiosInstance, this._getConfig()),
 
     retrieve: <Metadata = undefined>(data: RetrievePaymentIntentParams<IsPublicKey<Key>>) =>
       retrievePaymentIntent<Metadata, IsPublicKey<Key>>(
         data,
         this._axiosInstance,
-        this.getConfig()
+        this._getConfig()
       ),
 
     attach: <Metadata = undefined>(data: AttachPaymentIntentParams<IsPublicKey<Key>>) =>
-      attachPaymentIntent<Metadata, IsPublicKey<Key>>(data, this._axiosInstance, this.getConfig()),
+      attachPaymentIntent<Metadata, IsPublicKey<Key>>(data, this._axiosInstance, this._getConfig()),
   };
 
   sources = {
-    create: (data: CreateSourceParams) => createSource(data, this._axiosInstance, this.getConfig()),
+    create: (data: CreateSourceParams) =>
+      createSource(data, this._axiosInstance, this._getConfig()),
+
     retrieve: (data: RetrieveSourceParams) =>
-      retrieveSource(data, this._axiosInstance, this.getConfig()),
+      retrieveSource(data, this._axiosInstance, this._getConfig()),
+  };
+
+  payments = {
+    create: (data: CreatePaymentParams) => {
+      return createPayment(data, this._axiosInstance, this._getConfig());
+    },
+
+    retrieve: (data: RetrievePaymentParams) =>
+      retrievePayment(data, this._axiosInstance, this._getConfig()),
+
+    list: (data: ListAllPaymentsParams) =>
+      listAllPayments(data, this._axiosInstance, this._getConfig()),
   };
 }

@@ -1,0 +1,106 @@
+---
+sidebar_position: 1
+slug: /
+id: getting-started
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Getting Started
+
+The Paymongo API Client helps you with communicating with the Paymongo servers. It's fully typed, so you can get great _intellisense_.
+
+## Installation
+
+<Tabs
+defaultValue="npm"
+values={[
+{ label: 'npm', value: 'npm', },
+{ label: 'yarn', value: 'yarn', }
+]}>
+
+<TabItem value="npm">
+
+```bash
+npm install @paymongo/core
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+```bash
+yarn add @paymongo/core
+```
+
+</TabItem>
+
+</Tabs>
+
+### Create a Paymongo instance
+
+<Tabs
+defaultValue="ts"
+values={[
+{ label: 'Typescript', value: 'ts', },
+{ label: 'JavaScript', value: 'js', }
+]
+}>
+<TabItem value="ts">
+
+```ts
+import Paymongo, { SecretKey } from '@paymongo/core';
+
+const paymongo = new Paymongo(process.env.PAYMONGO_SECRET_KEY as SecretKey);
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+import Paymongo from '@paymongo/core';
+
+const paymongo = new Paymongo(process.env.PAYMONGO_SECRET_KEY);
+```
+
+</TabItem>
+
+</Tabs>
+
+:::note
+It can also be used in the browser.
+<Tabs
+defaultValue="ts"
+values={[
+{ label: 'Typescript', value: 'ts', },
+{ label: 'JavaScript', value: 'js', }
+]
+}>
+<TabItem value="ts">
+
+```ts
+import Paymongo, { PublicKey } from '@paymongo/core';
+
+const paymongo = new Paymongo(process.env.PAYMONGO_PUBLIC_KEY as PublicKey);
+```
+
+</TabItem>
+
+<TabItem value="js">
+
+```js
+import Paymongo from '@paymongo/core';
+
+const paymongo = new Paymongo(process.env.PAYMONGO_PUBLIC_KEY);
+```
+
+</TabItem>
+
+</Tabs>
+:::
+
+:::caution
+**DO NOT USE YOUR SECRET KEY IN A BROWSER ENVIRONMENT.**
+:::

@@ -47,7 +47,7 @@ export interface PaymentIntentResource<Metadata = MetadataType> {
       next_action?: NextAction;
 
       payment_method_allowed: ['card'];
-      payments: PaymentResource[];
+      payments: PaymentResource['data'][];
 
       payment_method_options: PaymentMethodOptions;
 

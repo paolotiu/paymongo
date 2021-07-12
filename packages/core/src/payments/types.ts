@@ -11,45 +11,72 @@ export interface PaymentSource {
 }
 
 export interface PaymentResource {
-  id: string;
-  type: 'payment';
-  attributes: {
-    access_url?: string;
-    amount: number;
-    balance_transaction_id: string;
-    billing?: Billing;
-    currency: Currency;
-    description?: string;
-    disputed: boolean;
-    external_reference_number?: string;
+  data: {
+    id: string;
+    type: 'payment';
+    attributes: {
+      access_url?: string;
+      amount: number;
+      balance_transaction_id: string;
+      billing?: Billing;
+      currency: Currency;
+      description?: string;
+      disputed: boolean;
+      external_reference_number?: string;
 
-    // On Fail
-    failed_code?: PossibleErrorSubCodes;
-    failed_message?: string;
+      // On Fail
+      failed_code?: PossibleErrorSubCodes;
+      failed_message?: string;
 
-    fee: number;
-    foreign_fee: number;
+      fee: number;
+      foreign_fee: number;
 
-    livemode: boolean;
-    net_amount: number;
-    origin: string;
-    payment_intent_id: string;
-    payout?: number;
+      livemode: boolean;
+      net_amount: number;
+      origin: string;
+      payment_intent_id: string;
+      payout?: number;
 
-    source: PaymentSource;
+      source: PaymentSource;
 
-    statement_descriptor: string;
-    status: PaymentStatus;
+      statement_descriptor: string;
+      status: PaymentStatus;
 
-    tax_amount?: number;
+      tax_amount?: number;
 
-    // TODO: Inquire about the structure of these types
-    refunds: any[];
-    taxes: any[];
+      // TODO: Inquire about the structure of these types
+      refunds: any[];
+      taxes: any[];
 
-    available_at: number;
-    created_at: number;
-    paid_at: number;
-    updated_at: number;
+      available_at: number;
+      created_at: number;
+      paid_at: number;
+      updated_at: number;
+    };
   };
+}
+
+export interface CreatePaymentParams {
+  data: {
+    attributes: {
+      amount: number;
+      description?: string;
+      currency: Currency;
+      statment_descriptor: string;
+      source: {
+        id: string;
+        type: 'source';
+      };
+    };
+  };
+}
+
+export interface ListAllPaymentsParams {
+  before: string;
+  after: string;
+  limit: string;
+}
+
+export interface RetrievePaymentParams {
+  id: string;
 }

@@ -8,8 +8,6 @@ A fully typed client for the Paymongo API
 
 - Fully typed
 - Supports both server and browser
-- Supports Payment Intent workflow
--
 
 ## Roadmap
 
@@ -18,6 +16,36 @@ A fully typed client for the Paymongo API
 - [x] Sources
 - [x] Payments
 - [ ] Helpers
+
+## Installation
+
+Install with npm
+
+```bash
+	npm install @paymongo/core
+```
+
+Install with yarn
+
+```bash
+	yarn install @paymongo/core
+```
+
+## Usage
+
+On the server
+
+```typescript
+const paymongo = new Paymongo(process.env.PAYMONGO_SECRET_KEY as SecretKey);
+```
+
+On the browser
+
+```typescript
+const paymongo = new Paymongo(process.env.PAYMONGO_PUBLIC_KEY as PublicKey);
+```
+
+- For Javascript users just remove the `as <Public/Private>Key` part
 
 ## FAQ
 

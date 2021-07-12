@@ -1,12 +1,13 @@
 ---
 title: Payment Method
+sidebar_position: 1
 ---
 
 # Payment Method
 
 [Official Docs](https://developers.paymongo.com/reference#the-payment-method-object)
 
-## Payment Method Resource {#payment-resource}
+## Payment Method Resource {#payment-method}
 
 ```ts
 export interface PaymentMethodResource<Metadata = MetadataType> {
@@ -34,9 +35,9 @@ import ParamsList from '../../src/components/ParamsList/PaymentMethod/PaymentMet
 
 ## Create Payment Method
 
-#### paymongo.paymentMethod.create([CreatePaymentMethodParams](#create-params)): [PaymentResource](#payment-resource)
+#### paymongo.paymentMethod.create([CreatePaymentMethodParams](#create-params)): [PaymentMethodResource](#payment-method)
 
-```js title="Create Payment Method"
+```js title="Example"
 paymongo.paymentMethod.create({
   data: {
     attributes: {
@@ -52,25 +53,7 @@ paymongo.paymentMethod.create({
 });
 ```
 
-#### CreatePaymentMethodParams {#create-params}
-
-```ts
-export interface CreatePaymentMethodParams<Metadata = MetadataType> {
-  data: {
-    attributes: {
-      type: 'card';
-      details: {
-        card_number: string;
-        exp_month: number;
-        exp_year: number;
-        cvc: string;
-      };
-      billng?: Billing;
-      metadata?: Metadata;
-    };
-  };
-}
-```
+#### Create Payment Method Params {#create-params}
 
 import CreateParamsList from '../../src/components/ParamsList/PaymentMethod/Create';
 
@@ -80,21 +63,15 @@ import CreateParamsList from '../../src/components/ParamsList/PaymentMethod/Crea
 
 ## Retrieve Payment Method
 
-**paymongo.paymentMethod.retrieve([RetrievePaymentMethodParams](#retrieve-params)): [PaymentResource](#payment-resource)**
+**paymongo.paymentMethod.retrieve([RetrievePaymentMethodParams](#retrieve-params)): [PaymentMethodResource](#payment-method)**
 
-```js title="Retrieve Payment Method"
+```js title="Example"
 paymongo.paymentMethod.retrieve({
   id: 'pm_ajeDG2y6WgnrCXaamWFmPUw2',
 });
 ```
 
-#### RetrievePaymentMethodParams {#retrieve-params}
-
-```ts
-export interface RetrievePaymentMethodParams {
-  id: string;
-}
-```
+#### Retrieve Payment Method Params {#retrieve-params}
 
 import RetrieveParamsList from '../../src/components/ParamsList/PaymentMethod/Retrieve';
 

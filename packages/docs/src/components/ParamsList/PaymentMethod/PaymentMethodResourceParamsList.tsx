@@ -1,53 +1,61 @@
 import React from 'react';
-import ParamsItem from '../ParamsItem';
-import ParamsList from '../ParamsList';
+import InTheFormOf from '../common/InTheFormOf';
+import PossibleValues from '../common/PossibleValues';
+import Params, { ParamsListItemData } from '../Params';
 
-// interface ParamsListData {
-//   name: string;
-//   type: string;
-//   required?: boolean;
-//   typeHref?: boolean;
-//   children?: ParamsListData[];
-// }
+const data: ParamsListItemData[] = [
+  { name: 'id', type: 'string', required: true },
+  {
+    name: 'type',
+    type: 'string',
+    required: true,
 
-const PaymentMethodResourceParamsList = () => {
-  return (
-    <ParamsList>
-      <ParamsItem name="id" type="string" required />
-      <ParamsItem name="type" type="'payment_method'" required />
+    description: <PossibleValues values={['payment_method']} />,
+  },
+  {
+    name: 'attributes',
+    type: 'object',
+    required: true,
+    children: [
+      {
+        name: 'livemode',
+        type: 'boolean',
+        required: true,
+      },
+      {
+        name: 'type',
+        type: 'string',
+        required: true,
+        description: <PossibleValues values={['card']} />,
+      },
 
-      <ParamsItem name="attributes" type="object" required>
-        <ParamsItem name="livemode" type="boolean" required />
-        <ParamsItem name="type" type="'card'" required />
-        <ParamsItem name="details" type="object" required>
-          <ParamsItem name="last4" type="string" required />
-          <ParamsItem
-            name="exp_month"
-            type="number"
-            description={
-              <p>
-                In the form of <pre>MM</pre>
-              </p>
-            }
-            required
-          />
-          <ParamsItem
-            name="exp_year"
-            type="number"
-            description={
-              <p>
-                In the form of <pre>YYYY</pre>
-              </p>
-            }
-            required
-          />
-        </ParamsItem>
-      </ParamsItem>
+      {
+        name: 'details',
+        type: 'object',
+        required: true,
+        children: [
+          { name: 'last4', type: 'string', required: true },
+          {
+            name: 'exp_month',
+            type: 'number',
+            required: true,
+            description: <InTheFormOf value="MM" />,
+          },
 
-      <ParamsItem name="billing" type="Billing" typeHref="#create-params" />
-      <ParamsItem name="metadata" type="Metadata" typeHref="#create-params" />
-    </ParamsList>
-  );
-};
+          {
+            name: 'exp_year',
+            type: 'number',
+            required: true,
+            description: <InTheFormOf value="YYYY" />,
+          },
+        ],
+      },
+      { name: 'billing', type: 'Billing' },
+      { name: 'metadata', type: 'Metadata' },
+    ],
+  },
+];
 
-export default PaymentMethodResourceParamsList;
+const Resource = () => <Params data={data} />;
+
+export default Resource;

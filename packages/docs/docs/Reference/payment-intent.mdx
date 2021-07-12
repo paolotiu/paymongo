@@ -1,0 +1,105 @@
+---
+title: Payment Intent
+sidebar_position: 2
+---
+
+[Official Docs](https://developers.paymongo.com/reference#the-payment-intent-object)
+
+## Payment Intent Resource {#payment-intent}
+
+```ts
+export interface PaymentIntentResource<Metadata = MetadataType> {
+  id: string;
+  type: 'payment_intent';
+  attributes: {
+    amount: number;
+    currency: Currency;
+    description?: string;
+    statement_descriptor: string;
+    status: PaymentIntentStatus;
+    livemode: boolean;
+    client_key: string;
+    last_payment_error?: LastPaymentError;
+    next_action?: NextAction;
+    payment_method_allowed: ['card'];
+    payments: PaymentResource[];
+    payment_method_options: PaymentMethodOptions;
+    metadata: Metadata;
+  };
+}
+```
+
+import Resource from '../../src/components/ParamsList/PaymentIntent/Resource';
+
+<Resource />
+
+---
+
+## Create Payment Intent
+
+:::caution
+**Only works in the when using the secret key**
+:::
+
+#### paymongo.paymentIntent.create([CreatePaymentIntentParams](#create-params)): [PaymentIntentResource](#payment-intent)
+
+```js title="Example"
+paymongo.paymentIntent.create({
+  data: {
+    attributes: {
+      amount: 10000,
+      currency: 'PHP',
+      payment_method_allowed: ['card'],
+    },
+  },
+});
+```
+
+#### Create Payment Intent Params {#create-params}
+
+import Create from '../../src/components/ParamsList/PaymentIntent/Create';
+
+<Create />
+
+---
+
+## Retrieve Payment Intent
+
+#### paymongo.paymentIntent.retrieve([RetrievePaymentIntentParams](#retrieve-params)): [PaymentIntentResource](#payment-intent)
+
+```js title="Example"
+paymongo.paymentIntent.retrieve({
+  client_key: 'pi_1JvFbEiRRnh2fsUE5nJ2F1z7_client_mpe6tJkgaX3pSoiYeSp1AbEU',
+  id: 'pi_1JvFbEiRRnh2fsUE5nJ2F1z7',
+});
+```
+
+#### Retrieve Payment Intent Params {#retrieve-params}
+
+import Retrieve from '../../src/components/ParamsList/PaymentIntent/Retrieve';
+
+<Retrieve />
+
+---
+
+## Attach Payment Intent
+
+#### paymongo.paymentIntent.attach([AttachPaymentIntentParams](#attach-params)): [PaymentIntentResource](#payment-intent)
+
+```js title="Example"
+paymongo.paymentIntent.attach({
+  id: 'pi_1JvFbEiRRnh2fsUE5nJ2F1z7',
+  data: {
+    attributes: {
+      client_key: 'pi_1JvFbEiRRnh2fsUE5nJ2F1z7_client_mpe6tJkgaX3pSoiYeSp1AbEU',
+      payment_method: 'pm_ajeDG2y6WgnrCXaamWFmPUw2',
+    },
+  },
+});
+```
+
+#### Attach Payment Intent Params {#attach-params}
+
+import Attach from '../../src/components/ParamsList/PaymentIntent/Attach';
+
+<Attach />

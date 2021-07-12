@@ -1,42 +1,54 @@
 import React from 'react';
-import ParamsItem from '../ParamsItem';
-import ParamsList from '../ParamsList';
+import InTheFormOf from '../common/InTheFormOf';
+import PossibleValues from '../common/PossibleValues';
+import Params, { ParamsListItemData } from '../Params';
 
-const Create = () => {
-  return (
-    <ParamsList>
-      <ParamsItem name="data" type="object" required>
-        <ParamsItem name="attributes" type="object" required>
-          <ParamsItem name="type" type="'card'" required />
-          <ParamsItem name="details" type="object" required>
-            <ParamsItem name="card_number" type="string" required />
-            <ParamsItem name="cvc" type="string" required />
-            <ParamsItem
-              name="exp_month"
-              type="number"
-              description={
-                <p>
-                  In the form of <pre>MM</pre>
-                </p>
-              }
-            />
-            <ParamsItem
-              name="exp_year"
-              type="number"
-              description={
-                <p>
-                  In the form of <pre>YYYY</pre>
-                </p>
-              }
-            />
-          </ParamsItem>
+const data: ParamsListItemData[] = [
+  {
+    name: 'data',
+    type: 'object',
+    required: true,
+    children: [
+      {
+        name: 'attributes',
+        type: 'object',
+        required: true,
+        children: [
+          { name: 'card', type: 'string', description: <PossibleValues values={['card']} /> },
+          {
+            name: 'details',
+            type: 'object',
+            required: true,
+            children: [
+              { name: 'card_number', type: 'string', required: true },
+              {
+                name: 'exp_month',
+                type: 'month',
+                required: true,
+                description: <InTheFormOf value="MM" />,
+              },
 
-          <ParamsItem name="billing" type="Billing" typeHref="#create-params" />
-          <ParamsItem name="metadata" type="Metadata" typeHref="#create-params" />
-        </ParamsItem>
-      </ParamsItem>
-    </ParamsList>
-  );
-};
+              {
+                name: 'exp_year',
+                type: 'month',
+                required: true,
+                description: <InTheFormOf value="YYYY" />,
+              },
+              {
+                name: 'cvc',
+                type: 'string',
+                required: true,
+              },
+            ],
+          },
+          { name: 'billing', type: 'Billing' },
+          { name: 'metadata', type: 'Metadata' },
+        ],
+      },
+    ],
+  },
+];
+
+const Create = () => <Params data={data} />;
 
 export default Create;

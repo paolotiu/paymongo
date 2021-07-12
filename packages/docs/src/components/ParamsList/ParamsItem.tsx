@@ -11,6 +11,7 @@ interface ParamsItemProps {
   description?: string | React.ReactNode;
   children?: React.ReactNode;
   typeHref?: string;
+  isHidden?: boolean;
 }
 
 const ParamsItem = ({
@@ -20,8 +21,9 @@ const ParamsItem = ({
   children,
   required = false,
   typeHref,
+  isHidden: isHiddenByDefault = false,
 }: ParamsItemProps) => {
-  const [isHidden, setIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(isHiddenByDefault);
   return (
     <div
       role="button"

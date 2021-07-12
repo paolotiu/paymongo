@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 export type SecretKey = `sk_${string}`;
 export type PublicKey = `pk_${string}`;
 export type SecretOrPublicKey = SecretKey | PublicKey;
@@ -19,17 +21,21 @@ export type PossibleErrorSubCodes =
   | 'processor_unavailable'
   | 'blocked';
 
-export interface PaymongoError {
-  errors: {
-    code: string;
-    detail: string;
-    source: {
-      pointer: string;
-      attribute: string;
-    };
-    sub_code?: PossibleErrorSubCodes;
+export interface ErrorShape {
+  code: string;
+  detail: string;
+  source?: {
+    pointer: string;
+    attribute: string;
   };
+  sub_code?: PossibleErrorSubCodes;
 }
+
+export interface PaymongoError {
+  errors: ErrorShape[];
+}
+
+export type PaymongoRequestError = AxiosError<PaymongoError>;
 
 export interface Billing {
   address?: {

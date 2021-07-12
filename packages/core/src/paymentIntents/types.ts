@@ -1,4 +1,4 @@
-import { Payment } from '@@payments/types';
+import { PaymentResource } from '@@payments/types';
 import { Currency, MetadataType, PossibleErrorSubCodes } from '../common/types';
 
 export type PaymentIntentStatus =
@@ -47,7 +47,7 @@ export interface PaymentIntentResource<Metadata = MetadataType> {
       next_action?: NextAction;
 
       payment_method_allowed: ['card'];
-      payments: Payment[];
+      payments: PaymentResource[];
 
       payment_method_options: PaymentMethodOptions;
 

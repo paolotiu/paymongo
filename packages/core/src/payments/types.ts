@@ -10,7 +10,7 @@ export interface PaymentSource {
   last4: string;
 }
 
-export interface Payment {
+export interface PaymentResource {
   id: string;
   type: 'payment';
   attributes: {

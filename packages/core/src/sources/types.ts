@@ -1,6 +1,6 @@
 import { Billing, Currency } from '@@common/types';
 
-export type SourceStatus = 'pending' | 'chargable' | 'cancelled' | 'expired' | 'paid';
+export type SourceStatus = 'pending' | 'chargeable' | 'cancelled' | 'expired' | 'paid';
 export type SourceType = 'gcash' | 'grab_pay';
 
 export interface SourceRedirect {

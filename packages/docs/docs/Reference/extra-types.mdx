@@ -1,0 +1,91 @@
+---
+title: Extra Types
+---
+
+## Billing {#billing}
+
+import Billing from '../../src/components/ParamsList/ExtraTypes/Billing';
+
+```ts
+export interface Billing {
+  address?: {
+    city?: string;
+    country?: string;
+    line1?: string;
+    line2?: string;
+    postal_code?: string;
+    state?: string;
+  };
+  email?: string;
+  name?: string;
+  phone?: string;
+}
+```
+
+<Billing />
+
+---
+
+## Metadata {#metadata}
+
+[askdoasdA](./sources#source-resource)
+
+```ts
+export type MetadataType = Record<string, any> | undefined;
+```
+
+Either an object or undefined
+
+---
+
+## Paymongo Error {#paymongo-error}
+
+```ts
+export interface ErrorShape {
+  code: string;
+  detail: string;
+  source?: {
+    pointer: string;
+    attribute: string;
+  };
+  sub_code?: ErrorSubCode;
+}
+
+export interface PaymongoError {
+  errors: ErrorShape[];
+}
+```
+
+import PaymongoError from '../../src/components/ParamsList/ExtraTypes/PaymongoError';
+
+<PaymongoError />
+
+---
+
+## ErrorSubCode {#error-sub-code}
+
+```ts
+export type ErrorSubCode =
+  | 'card_expired'
+  | 'cvc_invalid'
+  | 'generic_decline'
+  | 'fraudulent'
+  | 'insufficient_funds'
+  | 'processor_blocked'
+  | 'lost_card'
+  | 'stolen_card'
+  | 'processor_unavailable'
+  | 'blocked';
+```
+
+Possible values: `card_expired` | `cvc_invalid`
+| `generic_decline`
+| `fraudulent`
+| `insufficient_funds`
+| `processor_blocked`
+| `lost_card`
+| `stolen_card`
+| `processor_unavailable`
+| `blocked`
+
+---

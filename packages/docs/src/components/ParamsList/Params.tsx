@@ -13,10 +13,14 @@ export interface ParamsListItemData {
 }
 
 const renderParamsListItems = (data: ParamsListItemData) => {
-  if (!data.children?.length) return <ParamsItem {...data} />;
+  if (!data.children?.length) return <ParamsItem key={data.name} {...data} />;
 
   const { children, ...details } = data;
-  return <ParamsItem {...details}>{children.map((d) => renderParamsListItems(d))}</ParamsItem>;
+  return (
+    <ParamsItem key={details.name} {...details}>
+      {children.map((d) => renderParamsListItems(d))}
+    </ParamsItem>
+  );
 };
 
 interface Props {

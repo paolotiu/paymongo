@@ -41,8 +41,10 @@ const data: ParamsListItemData[] = [
               },
             ],
           },
-          { name: 'billing', type: 'Billing' },
-          { name: 'metadata', type: 'Metadata' },
+
+          { name: 'billing', type: 'Billing', typeHref: './extra-types#billing' },
+
+          { name: 'metadata', type: 'Metadata', typeHref: './extra-types#metadata' },
         ],
       },
     ],

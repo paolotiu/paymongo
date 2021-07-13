@@ -10,8 +10,8 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'paolotiu', // Usually your GitHub org/user name.
+  projectName: 'paymongo', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'Paymongo API Client',
@@ -24,7 +24,7 @@ module.exports = {
           type: 'doc',
           docId: 'getting-started',
           position: 'left',
-          label: 'Guide',
+          label: 'Getting Started',
         },
         {
           href: 'https://github.com/paolotiu/paymongo',
@@ -76,7 +76,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Gabriel Paolo Tiu`,
     },
     prism: {
       theme: lightCodeTheme,

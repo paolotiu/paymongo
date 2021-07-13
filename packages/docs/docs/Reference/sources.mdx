@@ -1,0 +1,76 @@
+---
+title: Sources
+sidebar_position: 3
+---
+
+[Official Docs](https://developers.paymongo.com/reference#the-source-resource-object)
+
+## Source Resource {#source-resource}
+
+```ts
+export interface SourceResource {
+  id: string;
+  type: 'source';
+  attributes: {
+    amount: number;
+    billing?: Billing;
+    currency: Currency;
+    livemode: boolean;
+    redirect: SourceRedirect;
+    status: SourceStatus;
+    type: SourceType;
+    created_at: number;
+    updated_at: number;
+  };
+}
+```
+
+import Resource from '../../src/components/ParamsList/Source/Resource';
+
+<Resource />
+
+---
+
+## Create Source
+
+#### paymongo.source.create([CreateSourceParams](#create-params)): [SourceResource](#source-resource)
+
+```js title="Example"
+paymongo.source.create({
+  data: {
+    attributes: {
+      amount: 10000,
+      currency: 'PHP',
+      redirect: {
+        failed: 'https://example.com',
+        success: 'https://example.com',
+      },
+      type: 'gcash',
+    },
+  },
+});
+```
+
+#### Create Source Params {#create-params}
+
+import Create from '../../src/components/ParamsList/Source/Create';
+
+<Create />
+
+---
+
+## Retrieve Source
+
+#### paymongo.source.retrieve([RetrieveSourceParams](#retrieve-params)): [SourceResource](#source-resource)
+
+```js title="Example"
+paymongo.source.retrieve({
+  id: 'src_1bLmj5BnqV2fCnM1SGGTdcrf',
+});
+```
+
+#### Retrieve Source Params {#retrieve-params}
+
+import Retrieve from '../../src/components/ParamsList/Source/Retrieve';
+
+<Retrieve />

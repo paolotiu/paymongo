@@ -9,12 +9,12 @@ const PossibleValues = ({ values }: Props) => {
     <>
       <span>Possible value(s):</span>
       {values.map((v, i) => {
-        if (i === 0) return <pre>{v}</pre>;
+        if (i === 0) return <pre key={v}>{v}</pre>;
         return (
-          <>
+          <React.Fragment key={v}>
             <span>|</span>
             <pre>{v}</pre>
-          </>
+          </React.Fragment>
         );
       })}
     </>

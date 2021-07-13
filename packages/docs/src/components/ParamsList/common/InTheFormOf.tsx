@@ -2,9 +2,9 @@ import React from 'react';
 
 const InTheFormOf = ({ value }: { value: string }) => {
   return (
-    <p>
+    <div>
       In the form of <pre>{value}</pre>
-    </p>
+    </div>
   );
 };
 

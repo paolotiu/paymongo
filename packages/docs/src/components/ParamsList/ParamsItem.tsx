@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { FiChevronRight } from 'react-icons/fi';
+import { Link } from '@docusaurus/router';
 import ParamsList from './ParamsList';
 import styles from './ParamsList.module.css';
 
@@ -45,13 +46,15 @@ const ParamsItem = ({
           <p className={styles.name}>
             {name} {required ? <span className={styles.red}>*</span> : null}
           </p>
+
           {typeHref ? (
-            <a href={typeHref} className={styles.type}>
+            <Link to={typeHref} className={styles.type}>
               {type}
-            </a>
+            </Link>
           ) : (
             <span className={styles.type}> {type}</span>
           )}
+
           {children && (
             <FiChevronRight
               size={14}
@@ -59,7 +62,7 @@ const ParamsItem = ({
             />
           )}
         </div>
-        <p className={styles.description}>{description}</p>
+        <div className={styles.description}>{description}</div>
       </div>
       <ParamsList isHidden={isHidden}>{children}</ParamsList>
     </div>

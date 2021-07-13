@@ -80,8 +80,8 @@ describe('Paymongo happy path', () => {
   });
 
   it('Calls sources correctly', async () => {
-    await paymongo.sources.create(fakeCreateSourceParams);
-    await paymongo.sources.retrieve(fakeRetrieveSourceParams);
+    await paymongo.source.create(fakeCreateSourceParams);
+    await paymongo.source.retrieve(fakeRetrieveSourceParams);
 
     // Requests are made
     expect(mock.history.post.length).toBe(1);

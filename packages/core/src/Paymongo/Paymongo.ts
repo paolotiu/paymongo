@@ -86,7 +86,7 @@ export class Paymongo<Key extends SecretOrPublicKey> {
       attachPaymentIntent<Metadata, IsPublicKey<Key>>(data, this._axiosInstance, this._getConfig()),
   };
 
-  sources = {
+  source = {
     create: (data: CreateSourceParams) =>
       createSource(data, this._axiosInstance, this._getConfig()),
 

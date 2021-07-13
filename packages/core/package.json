@@ -1,6 +1,6 @@
 {
   "name": "@paymongo/core",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "main": "dist/paymongo.umd.js",
   "module": "dist/paymongo.es5.js",
   "types": "dist/index.d.ts",

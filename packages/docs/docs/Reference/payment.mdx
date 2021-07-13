@@ -1,0 +1,127 @@
+---
+title: Payment
+sidebar_position: 4
+---
+
+[Official Docs](https://developers.paymongo.com/reference#payment-source)
+
+## Payment Resource {#payment-resource}
+
+```ts
+export interface PaymentResource {
+  id: string;
+  type: 'payment';
+  attributes: {
+    access_url?: string;
+    amount: number;
+    balance_transaction_id: string;
+    billing?: Billing;
+    currency: Currency;
+    description?: string;
+    disputed: boolean;
+    external_reference_number?: string;
+
+    // On Fail
+    failed_code?: ErrorSubCode;
+    failed_message?: string;
+
+    fee: number;
+    foreign_fee: number;
+
+    livemode: boolean;
+    net_amount: number;
+    origin: string;
+    payment_intent_id?: string;
+    payout?: number;
+
+    source: PaymentSource;
+
+    statement_descriptor: string;
+    status: PaymentStatus;
+
+    tax_amount?: number;
+
+    refunds: any[];
+    taxes: any[];
+
+    available_at: number;
+    created_at: number;
+    paid_at: number;
+    updated_at: number;
+  };
+}
+```
+
+import Resource from '../../src/components/ParamsList/Payment/Resource';
+
+<Resource />
+
+---
+
+## Create Payment
+
+:::caution
+**Only works in the when using the secret key**
+:::
+
+#### paymongo.payment.create([CreatePaymentParams](#create-params)): [PaymentResource](#payment-resource)
+
+```js title="Example"
+paymongo.payment.create({
+  data: {
+    attributes: {
+      amount: 10000,
+      currency: 'PHP',
+      source: { id: 'tok_X925Gje9FzRxfZCiBzNaSCbE', type: 'source' },
+    },
+  },
+});
+```
+
+#### Create Payment Params {#create-params}
+
+import Create from '../../src/components/ParamsList/Payment/Create';
+
+<Create />
+
+---
+
+## Retrieve Payment
+
+:::caution
+**Only works in the when using the secret key**
+:::
+
+#### paymongo.payment.retrieve([RetrievePaymentParams](#retrieve-params)): [PaymentResource](#payment-resource)
+
+```js title="Example"
+paymongo.payment.retrieve({
+  id: 'pay_a1nn2DXxeooJ9JqQfj7ytxfe',
+});
+```
+
+#### Retrieve Payment Params {#retrieve-params}
+
+import Retrieve from '../../src/components/ParamsList/Payment/Retrieve';
+
+<Retrieve />
+
+---
+
+## List Payments
+
+:::caution
+**Only works in the when using the secret key**
+:::
+
+#### paymongo.payment.list([ListPaymentParams](#list-params)): [PaymentResource[]](#payment-resource)
+
+```js title="Example"
+paymongo.payment.list({});
+```
+
+#### List Payment Params {#list-params}
+
+import List from '../../src/components/ParamsList/Payment/List';
+
+<List />

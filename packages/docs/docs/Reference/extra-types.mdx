@@ -28,13 +28,27 @@ export interface Billing {
 
 ## Metadata {#metadata}
 
-[askdoasdA](./sources#source-resource)
-
 ```ts
 export type MetadataType = Record<string, any> | undefined;
 ```
 
 Either an object or undefined
+
+---
+
+## Payment Source {#payment-source}
+
+```ts
+export type PaymentSource =
+  | {
+      id: string;
+      type: 'card';
+      brand: string;
+      country: string;
+      last4: string;
+    }
+  | { id: string; type: 'gcash' | 'grab_pay' };
+```
 
 ---
 

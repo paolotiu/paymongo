@@ -94,7 +94,7 @@ export class Paymongo<Key extends SecretOrPublicKey> {
       retrieveSource(data, this._axiosInstance, this._getConfig()),
   };
 
-  payments = {
+  payment = {
     create: (data: CreatePaymentParams) => {
       return createPayment(data, this._axiosInstance, this._getConfig());
     },

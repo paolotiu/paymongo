@@ -1,13 +1,13 @@
-import { Billing, MetadataType } from '../common/types';
+import { AllowedPaymentMethods, Billing, MetadataType } from '@@common/types';
 
 export interface PaymentMethodResource<Metadata = MetadataType> {
   id: string;
   type: 'payment_method';
   attributes: {
     livemode: boolean;
-    type: 'card';
+    type: AllowedPaymentMethods;
     billing?: Billing;
-    details: {
+    details?: {
       last4: string;
       exp_month: number;
       exp_year: number;
@@ -19,15 +19,14 @@ export interface PaymentMethodResource<Metadata = MetadataType> {
 export interface CreatePaymentMethodParams<Metadata = MetadataType> {
   data: {
     attributes: {
-      type: 'card';
-      details: {
+      type: AllowedPaymentMethods;
+      details?: {
         card_number: string;
         exp_month: number;
         exp_year: number;
         cvc: string;
       };
-      billng?: Billing;
-
+      billing?: Billing;
       metadata?: Metadata;
     };
   };

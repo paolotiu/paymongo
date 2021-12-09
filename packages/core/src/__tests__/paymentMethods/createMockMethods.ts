@@ -15,13 +15,13 @@ export const createMockMethods = (mock: MockAdapter) => {
       attributes: {
         livemode: false,
         details: {
-          exp_month: attributes.details.exp_month,
-          exp_year: attributes.details.exp_year,
-          last4: attributes.details.card_number.slice(-4),
+          exp_month: attributes.details?.exp_month || 0,
+          exp_year: attributes.details?.exp_year || 0,
+          last4: attributes.details?.card_number.slice(-4) || "",
         },
         metadata: attributes.metadata,
         type: 'card',
-        billing: attributes.billng,
+        billing: attributes.billing,
       },
     };
 

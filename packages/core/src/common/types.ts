@@ -8,6 +8,10 @@ export type IsPublicKey<Key extends SecretOrPublicKey> = Key extends PublicKey ?
 
 export type MetadataType = Record<string, any> | undefined;
 
+export type AllowedPaymentMethods =
+  | 'card'
+  | 'paymaya';
+
 export type Currency = 'PHP';
 export type ErrorSubCode =
   | 'card_expired'

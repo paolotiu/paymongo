@@ -1,5 +1,5 @@
 import { PaymentResource } from '@@payments/types';
-import { Currency, MetadataType, ErrorSubCode } from '../common/types';
+import { Currency, MetadataType, ErrorSubCode, AllowedPaymentMethods } from '@@common/types';
 
 export type PaymentIntentStatus =
   | 'awaiting_payment_method'
@@ -27,6 +27,7 @@ export interface PaymentMethodOptions {
     request_three_d_secure: 'any' | 'automatic';
   };
 }
+
 export interface PaymentIntentResource<Metadata = MetadataType> {
   id: string;
   type: 'payment_intent';
@@ -45,10 +46,10 @@ export interface PaymentIntentResource<Metadata = MetadataType> {
 
     next_action?: NextAction;
 
-    payment_method_allowed: ['card'];
+    payment_method_allowed: AllowedPaymentMethods[];
     payments: PaymentResource[];
 
-    payment_method_options: PaymentMethodOptions;
+    payment_method_options?: PaymentMethodOptions;
 
     metadata: Metadata;
   };
@@ -58,7 +59,7 @@ export interface CreatePaymentIntentParams<Metadata = MetadataType> {
   data: {
     attributes: {
       amount: number;
-      payment_method_allowed: ['card'];
+      payment_method_allowed: AllowedPaymentMethods[];
       payment_method_options?: PaymentMethodOptions;
       description?: string;
       statement_descriptor?: string;
